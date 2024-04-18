@@ -1,0 +1,7 @@
+{
+  "name": "test_blank_js",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
