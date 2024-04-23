@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import { Plugins } from '@capacitor/core';
 const { SafeArea } = Plugins;
@@ -28,18 +28,39 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => {
+  // const [safeArea, setSafeArea] = useState<{ top: number, bottom: number, left: number, right: number }>({ top: 0, bottom: 0, left: 0, right: 0 });
+
+  // useEffect(() => {
+  //   const getSafeAreaInsets = async () => {
+  //     const { safeArea } = await SafeArea.getSafeAreaInsets();
+  //     setSafeArea(safeArea);
+  //   };
+
+  //   getSafeAreaInsets();
+  // }, []);
+
+  const [statusBarHeight, setStatusBarHeight] = useState<number>(0);
+
   useEffect(() => {
-    const getSafeAreaInsets = async () => {
-      const { safeArea } = await SafeArea.getSafeAreaInsets();
-      console.log('Safe Area Insets:', safeArea);
-      // You can use the safeArea values to adjust your layout
+    const calculateStatusBarHeight = () => {
+      let calcHeight = 0;
+
+      // Try to get status bar height from visualViewport, fallback to window.innerHeight
+      if (window.visualViewport && window.visualViewport.offsetTop !== null) {
+        calcHeight = window.visualViewport.offsetTop;
+      } else {
+        calcHeight = (window.innerHeight - document.documentElement.clientHeight) / 2;
+      }
+
+      setStatusBarHeight(calcHeight);
     };
 
-    getSafeAreaInsets();
+    calculateStatusBarHeight();
   }, []);
 
   return (
-    <IonApp>
+    // <IonApp style={{ paddingTop: safeArea.top, paddingBottom: safeArea.bottom }}>
+    <IonApp style={{ paddingTop: statusBarHeight }}>
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/home">
