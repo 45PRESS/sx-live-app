@@ -1,3 +1,3 @@
 .main-wrapper {
-  padding-top: env(--ion-status-bar-padding);
+  padding-top: env(ion-status-bar-padding);
 }
