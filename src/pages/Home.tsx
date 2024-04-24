@@ -2,6 +2,7 @@ import { IonContent, IonPage, IonRefresher, IonRefresherContent } from '@ionic/r
 import React, { useState } from 'react';
 import './Home.css';
 import IframeContainer from '../components/IframeContainer';
+import { chevronDownCircleOutline } from 'ionicons/icons';
 
 const Home: React.FC = () => {
   const [refresh, setRefresh] = useState(0);
@@ -16,9 +17,14 @@ const Home: React.FC = () => {
 
   return (
     <IonPage className={'main-wrapper'}>
-      <IonContent fullscreen>
-        <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-          <IonRefresherContent></IonRefresherContent>
+      <IonContent fullscreen scrollY={false}>
+        <IonRefresher slot="fixed" pullFactor={0.5} pullMin={100} pullMax={200} mode='md' onIonRefresh={handleRefresh}>
+          <IonRefresherContent
+            pullingIcon={chevronDownCircleOutline}
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing..."
+          ></IonRefresherContent>
         </IonRefresher>
         <IframeContainer
           key={refresh} // Re-render the IframeContainer whenever refresh changes
