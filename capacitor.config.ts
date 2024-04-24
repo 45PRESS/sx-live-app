@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'test_blank_js',
+  appId: 'com.feld.sxlivetiming',
+  appName: 'Supercross Live Timing',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

@@ -1,5 +1,5 @@
 {
-  "name": "test_blank_js",
+  "name": "sx_live_app",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -23,6 +23,7 @@
     "@ionic/react-router": "^7.0.0",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "capacitor-plugin-safe-area": "^2.0.6",
     "firebase": "^10.10.0",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
